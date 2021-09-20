@@ -4,7 +4,6 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  
   build-image:
     # Specify the execution environment.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -14,18 +13,16 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
       - run:
           name: "Build Image"
-          command: docker build . -t yael/tddocker
-      - run: 
-          name: "Run container and curl"
-          command: docker run -p 8080:8080 yael/tddocker && curl http://localhost:8080/users
+          command: "docker build . -t yael/tddocker "
+      - run:
+          name: "Run image"
+          command: "docker run -p 8080:8080 -d yael/tddocker"
+      - run:
+          name: "Curl"
+          command: "curl http://localhost:8080/users"
       
-     
-    
-    
           
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
