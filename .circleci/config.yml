@@ -15,10 +15,10 @@ jobs:
       - checkout
       - start:
           name: "start daemon"
-          command: "sudo systemctl start docker"
+          command: sudo systemctl start docker
       - run:
           name: "Build Image"
-          command: "docker build . -t yael/tddocker "
+          command: docker build . -t yael/tddocker
     
     
           
