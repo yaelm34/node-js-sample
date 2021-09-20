@@ -13,9 +13,14 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - start:
+          name: "start daemon"
+          command: "sudo systemctl start docker"
       - run:
           name: "Build Image"
           command: "docker build . -t yael/tddocker "
+    
+    
           
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
