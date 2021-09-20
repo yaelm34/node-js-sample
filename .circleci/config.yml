@@ -19,9 +19,10 @@ jobs:
       - run:
           name: "Build Image"
           command: docker build . -t yael/tddocker
-      - run: docker run -p 8080:8080 yael/tddocker
-      - run: curl http://localhost:8080/users
-      - run: docker stop yael/tddocker
+      - run: 
+          name: "Run container and curl"
+          command: docker run -p 8080:8080 yael/tddocker && curl http://localhost:8080/users
+      
      
     
     
